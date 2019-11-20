@@ -19,7 +19,7 @@ const messages = {
   }
 }
 const i18n = new VueI18n({
-  locale: getLocal('language', 'en'), // 預設使用en
+  locale: getLocal('language', null, 'en'), // 預設使用en
   silentTranslationWarn: true,
   messages
 })

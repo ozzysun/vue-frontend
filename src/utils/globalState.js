@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import store from 'store2'
-const AppID = 'OzzySun'
+const AppID = 'QueueMachine'
 const defaultSaveType = 'local' // 儲存方式 cookie|local|tmp
 // common utils
 export const setLocal = (key, value, saveType = null) => { // 指定savetype
@@ -19,7 +19,7 @@ export const setLocal = (key, value, saveType = null) => { // 指定savetype
       break
   }
 }
-export const getLocal = (key, defaultValue = null, saveType = null) => {
+export const getLocal = (key, saveType = null, defaultValue = null) => {
   if (saveType === null) saveType = defaultSaveType
   key = getKey(key)
   let value = null
@@ -75,7 +75,11 @@ export const resetLocal = (saveType = null) => {
 }
 const getKey = (key, saveType = null) => {
   if (saveType === null) saveType = defaultSaveType
-  return saveType === 'cookie' ? `${AppID}-${key}` : `${AppID}/${key}`
+  if (key.indexOf(AppID) === -1) {
+    return saveType === 'cookie' ? `${AppID}-${key}` : `${AppID}/${key}`
+  } else {
+    return key
+  }
 }
 // 取得環境變數資料
 export const getEnv = (key) => {

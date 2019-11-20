@@ -55,7 +55,7 @@ export default {
     addEventHandler () {},
     dataReady () {},
     dispatchData (data = null, autoClose = true) {
-      if (data !== null) data = this.modalData
+      if (data === null) data = this.modalData
       this.emit('Modal.DispatchData', this.id, data, this.openerId)
       if (autoClose) this.close()
     },
